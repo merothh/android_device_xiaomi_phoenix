@@ -121,11 +121,9 @@ void load_props(const char *model, bool is_in = false) {
 
   if (!is_in) {
     ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[0], false);
-    property_override("ro.build.fingerprint", BUILD_FINGERPRINT[0]);
     property_override("ro.boot.product.hardware.sku", PRODUCTS[0]);
   } else {
     ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[1], false);
-    property_override("ro.build.fingerprint", BUILD_FINGERPRINT[1]);
     property_override("ro.com.google.clientidbase", CLIENT_ID[0]);
     property_override("ro.com.google.clientidbase.ms", CLIENT_ID[1]);
   }
