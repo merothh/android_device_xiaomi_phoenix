@@ -118,22 +118,18 @@ void load_props(const char *model, bool is_in = false) {
       ro_prop_override(source, "fingerprint", BUILD_FINGERPRINT[1], false);
     }
   }
+
   if (!is_in) {
     ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[0], false);
+    property_override("ro.build.fingerprint", BUILD_FINGERPRINT[0]);
     property_override("ro.boot.product.hardware.sku", PRODUCTS[0]);
   } else {
     ro_prop_override(nullptr, "description", BUILD_DESCRIPTION[1], false);
-  }
-  ro_prop_override(nullptr, "product", model, false);
-
-  // ro.build.fingerprint property has not been set
-  if (!is_in) {
-    property_override("ro.build.fingerprint", BUILD_FINGERPRINT[0]);
-  } else {
     property_override("ro.build.fingerprint", BUILD_FINGERPRINT[1]);
     property_override("ro.com.google.clientidbase", CLIENT_ID[0]);
     property_override("ro.com.google.clientidbase.ms", CLIENT_ID[1]);
   }
+  ro_prop_override(nullptr, "product", model, false);
 }
 
 void vendor_load_properties() {
